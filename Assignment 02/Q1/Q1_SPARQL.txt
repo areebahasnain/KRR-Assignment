@@ -1,0 +1,47 @@
+# 1. OpenWound that received SurgicalClosure (i.e. needed sutures/staples)
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound WHERE {
+  ?wound a :OpenWound ;
+         :hasTreatment ?closure .
+  ?closure a :SurgicalClosure .
+}
+# → returns DogBite_Forearm
+
+# 2. All wounds that received antibiotics
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound WHERE {
+  ?wound :hasTreatment ?abx .
+  ?abx a :Antibiotic .
+}
+# → returns DogBite_Forearm + Appendicectomy_Incision
+
+# 3. All surgical wounds
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound WHERE {
+  ?wound a :SurgicalWound .
+}
+# → returns only Appendicectomy_Incision
+
+
+# 4. All wounds that involve/affect the skin
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound WHERE {
+  ?wound :hasLocation :Skin .
+}
+# → returns DogBite_Forearm + Appendicectomy_Incision
+
+# 5. Wounds expected to heal in 14 days or less
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound ?days WHERE {
+  ?wound :healingDaysExpected ?days .
+  FILTER (?days <= 14)
+}
+# → returns Appendicectomy_Incision + Contusion_Ankle 
+
+# 6. Wounds with severe pain (≥7/10)
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
+SELECT ?wound ?pain WHERE {
+  ?wound :painLevel ?pain .
+  FILTER (?pain >= 7)
+}
+# → returns only DogBite_Forearm
