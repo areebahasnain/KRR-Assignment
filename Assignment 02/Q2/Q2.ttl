@@ -1,0 +1,307 @@
+@prefix : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/> .
+
+<http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/hasParty
+:hasParty rdf:type owl:ObjectProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :PolliticalParty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/holdsOffice
+:holdsOffice rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain :Person ;
+             rdfs:range :Office .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/locatedIn
+:locatedIn rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Office ;
+           rdfs:range :City .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/precededBy
+:precededBy rdf:type owl:ObjectProperty ;
+            rdfs:domain :Term ;
+            rdfs:range :Term .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/servedTerm
+:servedTerm rdf:type owl:ObjectProperty ;
+            rdfs:domain :Person ;
+            rdfs:range :Term .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/succeededBy
+:succeededBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :Term ;
+             rdfs:range :Term .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/termOfOffice
+:termOfOffice rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Term ;
+              rdfs:range :Office .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/birthDate
+:birthDate rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Person ;
+           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/electionDate
+:electionDate rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Term ;
+              rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/fullName
+:fullName rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :Person ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/ordinal
+:ordinal rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :termStart ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain :Term ;
+         rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/termEnd
+:termEnd rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :Term ;
+         rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/termStart
+:termStart rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :Term ;
+           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/votePercentage
+:votePercentage rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Term ;
+                rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/AdministrativeDivision
+:AdministrativeDivision rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/City
+:City rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Mayor
+:Mayor rdf:type owl:Class ;
+       rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/MayoralOffice
+:MayoralOffice rdf:type owl:Class ;
+               rdfs:subClassOf :Office .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Office
+:Office rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/PolliticalParty
+:PolliticalParty rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Term
+:Term rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Adams_Term_112
+:Adams_Term_112 rdf:type owl:NamedIndividual ,
+                         :Term ;
+                :servedTerm :EricAdams ;
+                :succeededBy :Mamdani_Term_113 ;
+                :termOfOffice :MayorOfNewYorkCity ;
+                :electionDate "2021-11-02T00:00:00"^^xsd:dateTime ;
+                :ordinal 112 ;
+                :termEnd "2025-12-31T23:59:59"^^xsd:dateTime ;
+                :termStart "2022-01-01T00:00:00"^^xsd:dateTime ;
+                :votePercentage 0.672 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/BillDeBlasio
+:BillDeBlasio rdf:type owl:NamedIndividual ,
+                       :Mayor ;
+              :hasParty :DemocraticParty ;
+              :holdsOffice :MayorOfNewYorkCity ;
+              :birthDate "1961-05-08T00:00:00"^^xsd:dateTime ;
+              :fullName "Bill de Blasio" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_108
+:Bloomberg_Term_108 rdf:type owl:NamedIndividual ,
+                             :Term ;
+                    :servedTerm :MichaelBloomberg ;
+                    :succeededBy :Bloomberg_Term_109 ;
+                    :termOfOffice :MayorOfNewYorkCity ;
+                    :electionDate "2001-11-06T00:00:00"^^xsd:dateTime ;
+                    :ordinal 108 ;
+                    :termEnd "2005-12-31T23:59:59"^^xsd:dateTime ;
+                    :termStart "2002-01-01T00:00:00"^^xsd:dateTime ;
+                    :votePercentage 0.50 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_109
+:Bloomberg_Term_109 rdf:type owl:NamedIndividual ,
+                             :Term ;
+                    :servedTerm :MichaelBloomberg ;
+                    :succeededBy :Bloomberg_Term_110 ;
+                    :electionDate "2005-11-08T00:00:00"^^xsd:dateTime ;
+                    :ordinal 109 ;
+                    :termEnd "2009-12-31T23:59:59"^^xsd:dateTime ;
+                    :termStart "2006-01-01T00:00:00"^^xsd:dateTime ;
+                    :votePercentage 0.58 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_110
+:Bloomberg_Term_110 rdf:type owl:NamedIndividual ,
+                             :Term ;
+                    :servedTerm :MichaelBloomberg ;
+                    :succeededBy :DeBlasio_Term_111 ;
+                    :electionDate "2009-11-03T00:00:00"^^xsd:dateTime ;
+                    :ordinal 110 ;
+                    :termEnd "2013-12-31T23:59:59"^^xsd:dateTime ;
+                    :termStart "2010-01-01T00:00:00"^^xsd:dateTime ;
+                    :votePercentage 0.506 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/DeBlasio_Term_111
+:DeBlasio_Term_111 rdf:type owl:NamedIndividual ,
+                            :Term ;
+                   :servedTerm :BillDeBlasio ;
+                   :succeededBy :Adams_Term_112 ;
+                   :electionDate "2013-11-05T00:00:00"^^xsd:dateTime ;
+                   :ordinal 111 ;
+                   :termEnd "2021-12-31T23:59:59"^^xsd:dateTime ;
+                   :termStart "2014-01-01T00:00:00"^^xsd:dateTime ;
+                   :votePercentage 0.73 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/DemocraticParty
+:DemocraticParty rdf:type owl:NamedIndividual ,
+                          :PolliticalParty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/EricAdams
+:EricAdams rdf:type owl:NamedIndividual ,
+                    :Mayor ;
+           :hasParty :DemocraticParty ;
+           :holdsOffice :MayorOfNewYorkCity ;
+           :birthDate "1960-09-01T00:00:00"^^xsd:dateTime ;
+           :fullName "Eric Adams" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Giuliani_Term_107
+:Giuliani_Term_107 rdf:type owl:NamedIndividual ,
+                            :Term ;
+                   :servedTerm :RudyGiuliani ;
+                   :succeededBy :Bloomberg_Term_108 ;
+                   :electionDate "1997-11-04T00:00:00"^^xsd:dateTime ;
+                   :ordinal 107 ;
+                   :termEnd "2001-12-31T23:59:59"^^xsd:dateTime ;
+                   :termStart "2000-01-01T00:00:00"^^xsd:dateTime ;
+                   :votePercentage 0.57 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Mamdani_Term_113
+:Mamdani_Term_113 rdf:type owl:NamedIndividual ,
+                           :Term ;
+                  :servedTerm :ZohranMamdani ;
+                  :electionDate "2025-11-04T00:00:00"^^xsd:dateTime ;
+                  :ordinal 113 ;
+                  :termEnd "2029-12-31T23:59:59"^^xsd:dateTime ;
+                  :termStart "2026-01-01T00:00:00"^^xsd:dateTime ;
+                  :votePercentage 0.503 .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/MayorOfNewYorkCity
+:MayorOfNewYorkCity rdf:type owl:NamedIndividual ,
+                             :MayoralOffice ;
+                    :locatedIn :NewYorkCity .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/MichaelBloomberg
+:MichaelBloomberg rdf:type owl:NamedIndividual ,
+                           :Mayor ;
+                  :hasParty :DemocraticParty ;
+                  :holdsOffice :MayorOfNewYorkCity ;
+                  :birthDate "1942-02-14T00:00:00"^^xsd:dateTime ;
+                  :fullName "Michael Bloomberg" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/NewYorkCity
+:NewYorkCity rdf:type owl:NamedIndividual ,
+                      :City .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/RepublicanParty
+:RepublicanParty rdf:type owl:NamedIndividual ,
+                          :PolliticalParty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/RudyGiuliani
+:RudyGiuliani rdf:type owl:NamedIndividual ,
+                       :Mayor ;
+              :hasParty :RepublicanParty ;
+              :holdsOffice :MayorOfNewYorkCity ;
+              :birthDate "1944-05-28T00:00:00"^^xsd:dateTime ;
+              :fullName "Rudolph Giuliani" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/ZohranMamdani
+:ZohranMamdani rdf:type owl:NamedIndividual ,
+                        :Mayor ;
+               :hasParty :DemocraticParty ;
+               :holdsOffice :MayorOfNewYorkCity ;
+               :birthDate "1991-10-18T00:00:00"^^xsd:dateTime ;
+               :fullName "Zohran Mamdani" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

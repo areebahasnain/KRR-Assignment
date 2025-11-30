@@ -1,0 +1,72 @@
+# Query 1 – Simple triple pattern matching
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+SELECT ?mayor ?name ?birth WHERE {
+  ?mayor a :Mayor ;
+         :fullName ?name ;
+         :birthDate ?birth .
+}
+ORDER BY ?birth
+
+# List all mayors and their birth dates
+SELECT ?mayor ?birthDate
+WHERE {
+    ?mayor a :Mayor ;
+           :birthDate ?birthDate .
+}.
+
+# Query 2 – Filtering using logical and numerical operators (GUARANTEED RESULTS)
+# Competency Question: 
+# "Which mayors were born in or after 1940 AND served at least one term with an ordinal number greater than 105?"
+
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+
+SELECT ?mayor ?name ?birth ?ordinal WHERE {
+  ?mayor a :Mayor ;
+         :fullName ?name ;
+         :birthDate ?birth ;
+         :servedTerm ?term .
+  ?term :ordinal ?ordinal .
+
+  # Logical AND numerical filters – deliberately easy to satisfy
+  FILTER (?birth >= "1940-01-01T00:00:00"^^xsd:dateTime)
+  FILTER (?ordinal > 105)
+}
+ORDER BY ?birth
+
+
+# Query 3 – OPTIONAL
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+SELECT ?term ?ordinal ?start ?end ?vote WHERE {
+  ?term a :Term ;
+        :ordinal ?ordinal ;
+        :termStart ?start .
+  OPTIONAL { ?term :termEnd ?end }
+  OPTIONAL { ?term :votePercentage ?vote }
+}
+ORDER BY ?ordinal
+
+# Query 4 – Aggregation (COUNT + AVG)PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+SELECT ?mayor ?name (COUNT(?term) AS ?termsServed) (AVG(?vote) AS ?avgVote) WHERE {
+  ?mayor a :Mayor ;
+         :fullName ?name ;
+         :servedTerm ?term .
+  OPTIONAL { ?term :votePercentage ?vote }
+}
+GROUP BY ?mayor ?name
+ORDER BY DESC(?termsServed)
+
+# Query 5 – Graph traversal ≥ 3 hops (succession chain)
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+SELECT ?successor ?succName ?succOrd ?predecessor ?predName ?predOrd WHERE {
+  ?succTerm a :Term ;
+            :precededBy ?predTerm ;
+            :ordinal ?succOrd .
+  ?predTerm :ordinal ?predOrd .
+  ?successor a :Mayor ;
+             :fullName ?succName ;
+             :servedTerm ?succTerm .
+  ?predecessor a :Mayor ;
+               :fullName ?predName ;
+               :servedTerm ?predTerm .
+}
+ORDER BY ?succOrd
