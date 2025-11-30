@@ -1,4 +1,4 @@
-# 1. OpenWound that received SurgicalClosure (i.e. needed sutures/staples)
+# 1. OpenWound that received SurgicalClosure 
 PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
 SELECT ?wound WHERE {
   ?wound a :OpenWound ;
@@ -23,7 +23,7 @@ SELECT ?wound WHERE {
 # → returns only Appendicectomy_Incision
 
 
-# 4. All wounds that involve/affect the skin
+# 4. All wounds that affect the skin
 PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-7#>
 SELECT ?wound WHERE {
   ?wound :hasLocation :Skin .
@@ -45,3 +45,4 @@ SELECT ?wound ?pain WHERE {
   FILTER (?pain >= 7)
 }
 # → returns only DogBite_Forearm
+
