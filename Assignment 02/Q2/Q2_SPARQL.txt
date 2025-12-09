@@ -9,6 +9,7 @@ SELECT ?mayor ?name ?birth WHERE {
 }
 ORDER BY ?birth
 
+
 # QUERY 2 — Born after 1940 AND ordinal > 105
 
 PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
@@ -26,6 +27,7 @@ SELECT ?mayor ?name ?birth ?ordinal WHERE {
 }
 ORDER BY ?birth
 
+
 # QUERY 3 — All terms with optional end + vote
 
 PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
@@ -40,7 +42,7 @@ SELECT ?term ?ordinal ?start ?end ?vote WHERE {
 ORDER BY ?ordinal
 
 
-# QUERY 4 — Aggregation (NOW WITH REAL RESULTS)
+# QUERY 4 — Aggregation
 
 <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
 SELECT ?mayor ?name 
@@ -78,5 +80,3 @@ WHERE {
              :servedTerm ?succTerm .
 }
 ORDER BY ?predOrd
-
-
