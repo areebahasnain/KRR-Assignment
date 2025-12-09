@@ -19,21 +19,20 @@
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/holdsOffice
-:holdsOffice rdf:type owl:ObjectProperty ,
-                      owl:FunctionalProperty ;
+:holdsOffice rdf:type owl:ObjectProperty ;
              rdfs:domain :Person ;
              rdfs:range :Office .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/locatedIn
-:locatedIn rdf:type owl:ObjectProperty ,
-                    owl:FunctionalProperty ;
+:locatedIn rdf:type owl:ObjectProperty ;
            rdfs:domain :Office ;
            rdfs:range :City .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/precededBy
 :precededBy rdf:type owl:ObjectProperty ;
+            owl:inverseOf :succeededBy ;
             rdfs:domain :Term ;
             rdfs:range :Term .
 
@@ -84,7 +83,7 @@
 
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/ordinal
 :ordinal rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :termStart ;
+         rdfs:subPropertyOf owl:topDataProperty ;
          rdf:type owl:FunctionalProperty ;
          rdfs:domain :Term ;
          rdfs:range xsd:integer .
@@ -156,7 +155,6 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Adams_Term_112
 :Adams_Term_112 rdf:type owl:NamedIndividual ,
                          :Term ;
-                :servedTerm :EricAdams ;
                 :succeededBy :Mamdani_Term_113 ;
                 :termOfOffice :MayorOfNewYorkCity ;
                 :electionDate "2021-11-02T00:00:00"^^xsd:dateTime ;
@@ -170,7 +168,7 @@
 :BillDeBlasio rdf:type owl:NamedIndividual ,
                        :Mayor ;
               :hasParty :DemocraticParty ;
-              :holdsOffice :MayorOfNewYorkCity ;
+              :servedTerm :DeBlasio_Term_111 ;
               :birthDate "1961-05-08T00:00:00"^^xsd:dateTime ;
               :fullName "Bill de Blasio" .
 
@@ -178,7 +176,6 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_108
 :Bloomberg_Term_108 rdf:type owl:NamedIndividual ,
                              :Term ;
-                    :servedTerm :MichaelBloomberg ;
                     :succeededBy :Bloomberg_Term_109 ;
                     :termOfOffice :MayorOfNewYorkCity ;
                     :electionDate "2001-11-06T00:00:00"^^xsd:dateTime ;
@@ -191,8 +188,8 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_109
 :Bloomberg_Term_109 rdf:type owl:NamedIndividual ,
                              :Term ;
-                    :servedTerm :MichaelBloomberg ;
                     :succeededBy :Bloomberg_Term_110 ;
+                    :termOfOffice :MayorOfNewYorkCity ;
                     :electionDate "2005-11-08T00:00:00"^^xsd:dateTime ;
                     :ordinal 109 ;
                     :termEnd "2009-12-31T23:59:59"^^xsd:dateTime ;
@@ -203,8 +200,8 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Bloomberg_Term_110
 :Bloomberg_Term_110 rdf:type owl:NamedIndividual ,
                              :Term ;
-                    :servedTerm :MichaelBloomberg ;
                     :succeededBy :DeBlasio_Term_111 ;
+                    :termOfOffice :MayorOfNewYorkCity ;
                     :electionDate "2009-11-03T00:00:00"^^xsd:dateTime ;
                     :ordinal 110 ;
                     :termEnd "2013-12-31T23:59:59"^^xsd:dateTime ;
@@ -215,8 +212,8 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/DeBlasio_Term_111
 :DeBlasio_Term_111 rdf:type owl:NamedIndividual ,
                             :Term ;
-                   :servedTerm :BillDeBlasio ;
                    :succeededBy :Adams_Term_112 ;
+                   :termOfOffice :MayorOfNewYorkCity ;
                    :electionDate "2013-11-05T00:00:00"^^xsd:dateTime ;
                    :ordinal 111 ;
                    :termEnd "2021-12-31T23:59:59"^^xsd:dateTime ;
@@ -234,6 +231,7 @@
                     :Mayor ;
            :hasParty :DemocraticParty ;
            :holdsOffice :MayorOfNewYorkCity ;
+           :servedTerm :Adams_Term_112 ;
            :birthDate "1960-09-01T00:00:00"^^xsd:dateTime ;
            :fullName "Eric Adams" .
 
@@ -241,19 +239,19 @@
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Giuliani_Term_107
 :Giuliani_Term_107 rdf:type owl:NamedIndividual ,
                             :Term ;
-                   :servedTerm :RudyGiuliani ;
                    :succeededBy :Bloomberg_Term_108 ;
+                   :termOfOffice :MayorOfNewYorkCity ;
                    :electionDate "1997-11-04T00:00:00"^^xsd:dateTime ;
                    :ordinal 107 ;
                    :termEnd "2001-12-31T23:59:59"^^xsd:dateTime ;
-                   :termStart "2000-01-01T00:00:00"^^xsd:dateTime ;
+                   :termStart "1998-01-01T00:00:00"^^xsd:dateTime ;
                    :votePercentage 0.57 .
 
 
 ###  http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/Mamdani_Term_113
 :Mamdani_Term_113 rdf:type owl:NamedIndividual ,
                            :Term ;
-                  :servedTerm :ZohranMamdani ;
+                  :termOfOffice :MayorOfNewYorkCity ;
                   :electionDate "2025-11-04T00:00:00"^^xsd:dateTime ;
                   :ordinal 113 ;
                   :termEnd "2029-12-31T23:59:59"^^xsd:dateTime ;
@@ -271,7 +269,9 @@
 :MichaelBloomberg rdf:type owl:NamedIndividual ,
                            :Mayor ;
                   :hasParty :DemocraticParty ;
-                  :holdsOffice :MayorOfNewYorkCity ;
+                  :servedTerm :Bloomberg_Term_108 ,
+                              :Bloomberg_Term_109 ,
+                              :Bloomberg_Term_110 ;
                   :birthDate "1942-02-14T00:00:00"^^xsd:dateTime ;
                   :fullName "Michael Bloomberg" .
 
@@ -290,7 +290,7 @@
 :RudyGiuliani rdf:type owl:NamedIndividual ,
                        :Mayor ;
               :hasParty :RepublicanParty ;
-              :holdsOffice :MayorOfNewYorkCity ;
+              :servedTerm :Giuliani_Term_107 ;
               :birthDate "1944-05-28T00:00:00"^^xsd:dateTime ;
               :fullName "Rudolph Giuliani" .
 
@@ -299,7 +299,7 @@
 :ZohranMamdani rdf:type owl:NamedIndividual ,
                         :Mayor ;
                :hasParty :DemocraticParty ;
-               :holdsOffice :MayorOfNewYorkCity ;
+               :servedTerm :Mamdani_Term_113 ;
                :birthDate "1991-10-18T00:00:00"^^xsd:dateTime ;
                :fullName "Zohran Mamdani" .
 
