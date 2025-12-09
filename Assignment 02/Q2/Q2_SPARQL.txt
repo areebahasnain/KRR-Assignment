@@ -44,8 +44,8 @@ ORDER BY ?ordinal
 
 # QUERY 4 — Aggregation
 
-<http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
-SELECT ?mayor ?name 
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>SELECT ?mayor ?name 
        (COUNT(?term) AS ?termsServed) 
        (AVG(?vote) AS ?avgVote) 
 WHERE {
@@ -80,3 +80,4 @@ WHERE {
              :servedTerm ?succTerm .
 }
 ORDER BY ?predOrd
+
