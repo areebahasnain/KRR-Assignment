@@ -42,7 +42,6 @@ ORDER BY ?ordinal
 
 
 # QUERY 4 — Aggregation (NOW WITH REAL RESULTS)<http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
-
 SELECT ?mayor ?name 
        (COUNT(?term) AS ?termsServed) 
        (AVG(?vote) AS ?avgVote) 
@@ -78,3 +77,4 @@ WHERE {
              :servedTerm ?succTerm .
 }
 ORDER BY ?predOrd
+
