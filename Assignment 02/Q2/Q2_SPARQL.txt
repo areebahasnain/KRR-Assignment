@@ -1,5 +1,7 @@
-# Query 1 – Simple triple pattern matching
-PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+# QUERY 1 — All mayors with birthdates
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
 SELECT ?mayor ?name ?birth WHERE {
   ?mayor a :Mayor ;
          :fullName ?name ;
@@ -7,66 +9,72 @@ SELECT ?mayor ?name ?birth WHERE {
 }
 ORDER BY ?birth
 
-# List all mayors and their birth dates
-SELECT ?mayor ?birthDate
-WHERE {
-    ?mayor a :Mayor ;
-           :birthDate ?birthDate .
-}.
+# QUERY 2 — Born after 1940 AND ordinal > 105
 
-# Query 2 – Filtering using logical and numerical operators (GUARANTEED RESULTS)
-# Competency Question: 
-# "Which mayors were born in or after 1940 AND served at least one term with an ordinal number greater than 105?"
-
-PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT ?mayor ?name ?birth ?ordinal WHERE {
   ?mayor a :Mayor ;
          :fullName ?name ;
          :birthDate ?birth ;
          :servedTerm ?term .
+
   ?term :ordinal ?ordinal .
 
-  # Logical AND numerical filters – deliberately easy to satisfy
   FILTER (?birth >= "1940-01-01T00:00:00"^^xsd:dateTime)
   FILTER (?ordinal > 105)
 }
 ORDER BY ?birth
 
+# QUERY 3 — All terms with optional end + vote
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
 
-# Query 3 – OPTIONAL
-PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
 SELECT ?term ?ordinal ?start ?end ?vote WHERE {
   ?term a :Term ;
         :ordinal ?ordinal ;
         :termStart ?start .
+        
   OPTIONAL { ?term :termEnd ?end }
   OPTIONAL { ?term :votePercentage ?vote }
 }
 ORDER BY ?ordinal
 
-# Query 4 – Aggregation (COUNT + AVG)PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
-SELECT ?mayor ?name (COUNT(?term) AS ?termsServed) (AVG(?vote) AS ?avgVote) WHERE {
+
+# QUERY 4 — Aggregation (NOW WITH REAL RESULTS)<http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
+
+SELECT ?mayor ?name 
+       (COUNT(?term) AS ?termsServed) 
+       (AVG(?vote) AS ?avgVote) 
+WHERE {
   ?mayor a :Mayor ;
          :fullName ?name ;
          :servedTerm ?term .
+         
   OPTIONAL { ?term :votePercentage ?vote }
 }
 GROUP BY ?mayor ?name
 ORDER BY DESC(?termsServed)
 
-# Query 5 – Graph traversal ≥ 3 hops (succession chain)
-PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9#>
-SELECT ?successor ?succName ?succOrd ?predecessor ?predName ?predOrd WHERE {
-  ?succTerm a :Term ;
-            :precededBy ?predTerm ;
-            :ordinal ?succOrd .
-  ?predTerm :ordinal ?predOrd .
-  ?successor a :Mayor ;
-             :fullName ?succName ;
-             :servedTerm ?succTerm .
+
+# QUERY 5 – Succession chain
+PREFIX : <http://www.semanticweb.org/hp/ontologies/2025/10/untitled-ontology-9/>
+
+SELECT ?predecessor ?predName ?predOrd 
+       ?successor ?succName ?succOrd 
+WHERE {
+  ?predTerm a :Term ;
+            :succeededBy ?succTerm ;
+            :ordinal ?predOrd .
+
+  ?succTerm :ordinal ?succOrd .
+
   ?predecessor a :Mayor ;
                :fullName ?predName ;
                :servedTerm ?predTerm .
+
+  ?successor a :Mayor ;
+             :fullName ?succName ;
+             :servedTerm ?succTerm .
 }
-ORDER BY ?succOrd
+ORDER BY ?predOrd
